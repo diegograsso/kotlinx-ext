@@ -4,12 +4,12 @@ import com.typesafe.config.Config
 import java.nio.file.Path
 import java.nio.file.Paths
 
-private fun Config.plus(fallback: Config): Config = this.withFallback(fallback)
-private fun Config.value(key: String): ConfiguredValue = ConfiguredValue(this, key)
-private fun Config.nested(key: String): Config = this.getConfig(key)
-private fun Config.render(): String = this.root().render()
+public fun Config.plus(fallback: Config): Config = this.withFallback(fallback)
+public fun Config.value(key: String): ConfiguredValue = ConfiguredValue(this, key)
+public fun Config.nested(key: String): Config = this.getConfig(key)
+public fun Config.render(): String = this.root().render()
 
-private class ConfiguredValue(val cfg: Config, val key: String) {
+public class ConfiguredValue(val cfg: Config, val key: String) {
     fun asPath(): Path = Paths.get(cfg.getString(key).trim()).toAbsolutePath()
     fun asPath(relativeTo: Path): Path = relativeTo.resolveSibling(cfg.getString(key).trim()).toAbsolutePath()
 
