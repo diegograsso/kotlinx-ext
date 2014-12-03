@@ -8,6 +8,21 @@ import java.net.URLDecoder
 import java.util.ArrayList
 import java.net.URLEncoder
 
+
+public fun foo() {
+  val myUri = UriBuilder {
+      scheme = "http"
+      port = 80
+      host = "www.ibm.com"
+      params {
+          + Pair("this", "that")
+          + ("this" to "that")
+          - "dontwantthisone"
+      }
+  }
+}
+
+
 public fun buildUri(uri: URI): UriBuilder {
     return UriBuilder {
         scheme = uri.getScheme()
@@ -74,6 +89,10 @@ class UriBuilder(init: UriBuilder.() -> Unit = {}) {
     }
 
     inner class UriParams(init: UriParams.() -> Unit = {}) {
+        {
+            with(this) { init() }
+        }
+
         fun Pair<String, String?>.plus() {
             this@UriBuilder.withParams(this)
         }
