@@ -8,6 +8,45 @@ public fun String.exceptLast(): String = this.substring(0, this.length()-1)
 public fun String.exceptStarting(allAfterThisMany: Int): String = this.substring(allAfterThisMany)
 public fun String.exceptFirst(): String = this.substring(1)
 
+public fun String.mustStartWith(prefix: String): String {
+  return if (this.startsWith(prefix)) {
+    this
+  }
+  else {
+    prefix + this
+  }
+}
+
+public fun String.mustStartWith(prefix: Char): String {
+  return if (this.startsWith(prefix)) {
+    this
+  }
+  else {
+    prefix + this
+  }
+}
+
+public fun String.mustNotStartWith(prefix: String): String {
+  return if (!this.startsWith(prefix)) {
+    this
+  }
+  else {
+    this.exceptStarting(prefix.length)
+  }
+}
+
+public fun String.mustNotStartWith(prefix: Char): String {
+  return if (!this.startsWith(prefix)) {
+    this
+  }
+  else {
+    this.exceptFirst()
+  }
+}
+
+
 public val String.length: Int
   get() { return this.length() }
 
+
+public fun String?.isNotTrimmedEmpty(): Boolean = (this ?: "").trim().isNotEmpty()
