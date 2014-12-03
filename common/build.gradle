@@ -1,0 +1,5 @@
+dependencies {
+    provided "com.typesafe:config:${version_typesafe_config}"
+
+    testCompile "com.typesafe:config:${version_typesafe_config}"
+}
