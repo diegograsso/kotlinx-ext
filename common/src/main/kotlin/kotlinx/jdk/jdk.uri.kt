@@ -56,15 +56,6 @@ public fun buildHttpsUri(hostname: String, hostport: Int, requestPath: String? =
     }
 }
 
-class UriParams(val builder: UriBuilder, init: UriParams.() -> Unit = {}) {
-    fun Pair<String, String?>.plus() {
-        builder.withParams(this)
-    }
-    fun String.minus() {
-        builder.removeParam(this)
-    }
-}
-
 class UriBuilder(init: UriBuilder.() -> Unit = {}) {
     var scheme: String by Delegates.notNull()
     var userInfo: String by Delegates.notNull()
@@ -79,8 +70,18 @@ class UriBuilder(init: UriBuilder.() -> Unit = {}) {
     }
 
     fun UriBuilder.params(init: UriParams.() -> Unit = {}): Unit {
-        UriParams(this, init)
+        UriParams(init)
     }
+
+    inner class UriParams(init: UriParams.() -> Unit = {}) {
+        fun Pair<String, String?>.plus() {
+            this@UriBuilder.withParams(this)
+        }
+        fun String.minus() {
+            this@UriBuilder.removeParam(this)
+        }
+    }
+
 
     fun replaceParams(vararg params: Pair<String, String?>): UriBuilder {
         for (param in params) {
