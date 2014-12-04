@@ -1,9 +1,11 @@
 dependencies {
-    project ":common"
+    compile project(":common")
 
     compile "com.typesafe:config:${version_typesafe_config}"
     compile "io.undertow:undertow-servlet:${version_undertow}"
     compile "org.slf4j:slf4j-api:${version_slf4j}"
+
+    // TODO: don't hard include logging, people need to include their own
     runtime "ch.qos.logback:logback-classic:${version_logback}"
     runtime "ch.qos.logback:logback-access:${version_logback}"
     runtime "org.slf4j:jcl-over-slf4j:${version_slf4j}"

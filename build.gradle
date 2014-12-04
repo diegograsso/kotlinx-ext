@@ -32,7 +32,12 @@ subprojects {
 
     repositories {
         jcenter()
-        maven { url 'http://repository.jetbrains.com/all' }
+        maven {
+            url 'http://repository.jetbrains.com/all'
+        }
+        maven {
+            url 'http://oss.sonatype.org/content/repositories/snapshots'
+        }
     }
 }
 
@@ -41,6 +46,9 @@ buildscript {
         mavenCentral()
         maven {
             url 'http://repo.spring.io/plugins-release'
+        }
+        maven {
+            url 'http://oss.sonatype.org/content/repositories/snapshots'
         }
     }
     dependencies {
