@@ -37,7 +37,7 @@ subprojects {
     dependencies {
         compile "org.slf4j:slf4j-api:${version_slf4j}"
 
-        provided "org.jetbrains.kotlin:kotlin-stdlib:$kotlinVersion"
+        compile "org.jetbrains.kotlin:kotlin-stdlib:$kotlinVersion"
 
         testRuntime "org.jetbrains.kotlin:kotlin-stdlib:$kotlinVersion"
         testCompile "org.hamcrest:hamcrest-all:$hamcrestVersion"
@@ -66,6 +66,12 @@ subprojects {
     }
 
     configurations.all {
+        exclude group: "org.slf4j", module: "slf4j-simple"
+        exclude group: "commons-logging"
+        exclude group: "log4j"
+        exclude group: "com.google.code.findbugs"
+        exclude group: "org.slf4j", module: "slf4j-log4j12"
+
         resolutionStrategy {
             cacheDynamicVersionsFor 1, 'days'  // things with wildcard version numbers
             cacheChangingModulesFor 4, 'hours'  // things with same version, but content of module changes, i.e. SNAPSHOT

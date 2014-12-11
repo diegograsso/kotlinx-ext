@@ -2,9 +2,6 @@ dependencies {
     compile relativeProject(":common")
     compile relativeProject(":web")
 
-    compile "org.jetbrains.kotlin:kotlin-stdlib:$kotlinVersion"
-    compile "org.slf4j:slf4j-api:${version_slf4j}"
-
     runtime "ch.qos.logback:logback-classic:${version_logback}"
     runtime "ch.qos.logback:logback-access:${version_logback}"
     runtime "org.slf4j:jcl-over-slf4j:${version_slf4j}"
