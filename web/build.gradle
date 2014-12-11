@@ -1,14 +1,16 @@
 dependencies {
-    compile project(":common")
+    compile relativeProject(":common")
 
     compile "com.typesafe:config:${version_typesafe_config}"
     compile "io.undertow:undertow-servlet:${version_undertow}"
-    compile "org.slf4j:slf4j-api:${version_slf4j}"
 
-    // TODO: don't hard include logging, people need to include their own
-    runtime "ch.qos.logback:logback-classic:${version_logback}"
-    runtime "ch.qos.logback:logback-access:${version_logback}"
-    runtime "org.slf4j:jcl-over-slf4j:${version_slf4j}"
-    runtime "org.slf4j:jul-to-slf4j:${version_slf4j}"
-    runtime "org.slf4j:log4j-over-slf4j:${version_slf4j}"
+
+    // used by Kara, decide what to do with these later
+    compile 'commons-io:commons-io:2.4'
+    compile 'org.lesscss:lesscss:1.7.0.1.1'
+    compile 'org.reflections:reflections:0.9.9'
+    compile 'com.yahoo.platform.yui:yuicompressor:2.4.8'
+    // end Kara specific things
+
+    testRuntime "ch.qos.logback:logback-access:${version_logback}"
 }

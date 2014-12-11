@@ -7,7 +7,7 @@
     </appender>
 
     <appender name="WEB" class="ch.qos.logback.core.rolling.RollingFileAppender">
-        <file>${solr.log}/solr.log</file>
+        <file>logs/solr.log</file>
 
         <filter class="ch.qos.logback.access.filter.CountingFilter">
             <name>solrLogCountingFilter</name>
@@ -27,7 +27,7 @@
     </appender>
 
     <appender name="ERROR" class="ch.qos.logback.core.rolling.RollingFileAppender">
-        <file>${solr.log}/error.log</file>
+        <file>logs/error.log</file>
         <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
             <level>ERROR</level>
         </filter>
@@ -50,7 +50,7 @@
     </appender>
 
     <appender name="ACCESS" class="ch.qos.logback.core.rolling.RollingFileAppender">
-        <file>${solr.log}/access.log</file>
+        <file>logs/access.log</file>
 
         <filter class="ch.qos.logback.access.filter.CountingFilter">
             <name>accessLogCountingFilter</name>
