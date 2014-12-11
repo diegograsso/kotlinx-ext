@@ -4,7 +4,6 @@ dependencies {
     compile "com.typesafe:config:${version_typesafe_config}"
     compile "io.undertow:undertow-servlet:${version_undertow}"
 
-
     // used by Kara, decide what to do with these later, TODO: add the version numbers to property file
     compile 'commons-io:commons-io:2.4'
     compile 'org.lesscss:lesscss:1.7.0.1.1'
