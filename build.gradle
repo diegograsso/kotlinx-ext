@@ -112,7 +112,7 @@ buildscript {
     dependencies {
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlinVersion"
         classpath "org.springframework.build.gradle:propdeps-plugin:$propdepsVersion"
-        classpath "com.prezi.gradle.pride:gradle-pride-plugin:0.9.14"
+        classpath "com.prezi.gradle.pride:gradle-pride-plugin:$prideVersion"
     }
 }
 
