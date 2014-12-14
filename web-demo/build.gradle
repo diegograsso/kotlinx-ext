@@ -1,6 +1,6 @@
 dependencies {
-    compile relativeProject(":common")
     compile relativeProject(":web")
+    compile relativeProject(":common")
 
     runtime "ch.qos.logback:logback-classic:${version_logback}"
     runtime "ch.qos.logback:logback-access:${version_logback}"

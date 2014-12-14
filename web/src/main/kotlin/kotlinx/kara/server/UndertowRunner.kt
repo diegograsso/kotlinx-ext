@@ -60,6 +60,8 @@ public class UndertowRunner(val applicationConfig: ApplicationConfig) {
         val port = applicationConfig.port.toInt() // TODO: move to fixedup config
         val host = "0.0.0.0" // TODO: move to fixedup config
 
+        val pubDir = File("${applicationConfig.publicDirectories.first()}").getCanonicalFile()
+
         val deployment = Servlets.deployment()
                 .setClassLoader(javaClass.getClassLoader())  // TODO: should we do one that allows jars to be added
                 .setContextPath(cfg.contextPath)
@@ -78,7 +80,7 @@ public class UndertowRunner(val applicationConfig: ApplicationConfig) {
                 )
                 .addMimeMapping(MimeMapping(".xsl", "application/xslt+xml"))
                 .addWelcomePage("admin.html")
-                .setResourceManager(FileResourceManager(File("./${applicationConfig.publicDirectories}"), 1024))
+                .setResourceManager(FileResourceManager(pubDir, 1024))
 
         val deploymentManager = Servlets.defaultContainer().addDeployment(deployment)
         deploymentManager.deploy()

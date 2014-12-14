@@ -6,9 +6,15 @@ dependencies {
 
     // used by Kara, decide what to do with these later, TODO: add the version numbers to property file
     compile 'commons-io:commons-io:2.4'
-    compile 'org.lesscss:lesscss:1.7.0.1.1'
+    compile 'org.lesscss:lesscss:1.7.0.1.1'   // alternative engine for LESS compile that supports nashhorn 'com.asual.lesscss:lesscss-engine:1.5.1'
+
     compile 'org.reflections:reflections:0.9.9'
-    compile 'com.yahoo.platform.yui:yuicompressor:2.4.8'
+
+    // TODO: this has very unsafe different rhino in it but it wasn't relocated, so it blows up real Rhino.  Replacement jar below.
+    //compile('com.yahoo.platform.yui:yuicompressor:2.4.8') {
+    //     exclude group: "rhino"
+    //}
+    compile files('lib/yuicompressor-hacked-rhino-renamed-2.4.8.jar')
     // end Kara specific things
 
     testRuntime "ch.qos.logback:logback-access:${version_logback}"

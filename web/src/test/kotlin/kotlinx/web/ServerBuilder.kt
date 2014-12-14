@@ -53,10 +53,10 @@ public class ServerBuilderTests {
             assertEquals(ServerProtocol.HTTP, server.listeners[0].protocol)
             assertEquals("127.0.0.1", server.listeners[1].host)
             assertEquals(9443, server.listeners[1].port)
-            assertEquals(ServerProtocol.HTTPS, server.listeners[0].protocol)
+            assertEquals(ServerProtocol.HTTPS, server.listeners[1].protocol)
             assertEquals("127.0.0.1", server.listeners[2].host)
             assertEquals(9092, server.listeners[2].port)
-            assertEquals(ServerProtocol.WEBSOCKETS, server.listeners[0].protocol)
+            assertEquals(ServerProtocol.WEBSOCKETS, server.listeners[2].protocol)
         }
 
     }

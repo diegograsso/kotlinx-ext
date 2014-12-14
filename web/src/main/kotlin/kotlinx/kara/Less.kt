@@ -3,12 +3,18 @@ package kotlinx.kara;
 import java.io.InputStream
 import org.lesscss.LessCompiler
 import org.lesscss.LessSource
+// import com.asual.lesscss.LessEngine
 
 private val compiler = LessCompiler()
+// private val lessEngineCompiler = LessEngine()
 
 public open class EmbeddedLessResource(val name: String) : CachedResource() {
     override fun content(context: ActionContext): ResourceContent {
         synchronized(this) {
+            //     using less-engine
+            // val css = lessEngineCompiler.compile(String(context.loadResource(name), Charsets.UTF_8))
+
+            //     using 'org.lesscss:lesscss:1.7.0.1.1'
             val css = compiler.compile(LessSource(ClasspathResource(name, context))) ?: error("$name can't be compiled")
             val bytes =  css.toByteArray("UTF-8")
             return ResourceContent("text/css", System.currentTimeMillis(), bytes.size) { bytes.inputStream }

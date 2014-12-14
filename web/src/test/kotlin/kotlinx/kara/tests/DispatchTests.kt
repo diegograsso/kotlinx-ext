@@ -16,7 +16,7 @@ class DispatchTests() {
     }
 
     Test fun runDispatchTests() {
-        val appConfig = ApplicationConfig.loadFrom("src/KaraTests/src/kara.tests/test.conf")
+        val appConfig = ApplicationConfig.loadFrom("src/test/kotlin/kotlinx/kara/tests/test.conf")
 
         val app = object : Application(appConfig) {}
 

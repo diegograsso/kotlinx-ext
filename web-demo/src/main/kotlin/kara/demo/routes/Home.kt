@@ -10,7 +10,7 @@ object Home {
 
     Get("/test")
     class Test() : Request({
-        TextResult("This is a test action, yo")
+        TextResult("This is a test action, yo!!!!")
     })
 
     Get("/crash")
@@ -20,7 +20,7 @@ object Home {
 
     Post("/updatebook")
     class Update() : Request({
-        println("parameters:")
+        println("Parameters:")
         println(params.getHash("book").toString())
         redirect("/forms")
     })

@@ -4,8 +4,8 @@ import java.io.StringWriter
 import org.slf4j.LoggerFactory
 import com.yahoo.platform.yui.compressor.JavaScriptCompressor
 import com.yahoo.platform.yui.compressor.CssCompressor
-import org.mozilla.javascript.ErrorReporter
-import org.mozilla.javascript.EvaluatorException
+import jj.org.mozilla.javascript.ErrorReporter
+import jj.org.mozilla.javascript.EvaluatorException
 
 fun ByteArray.minifyResource(context: ActionContext, mime: String): ByteArray {
     try {

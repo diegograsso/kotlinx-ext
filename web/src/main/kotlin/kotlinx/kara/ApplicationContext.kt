@@ -95,7 +95,7 @@ class ApplicationContext(public val application : Application,
             return Reflections(prefix, classLoader).getSubTypesOf(javaClass<ApplicationContextMonitor>())!!.toList()
         }
         catch(e: Throwable) {
-            e.printStackTrace()
+            // e.printStackTrace()
             return listOf<Class<ApplicationContextMonitor>>()
         }
     }
