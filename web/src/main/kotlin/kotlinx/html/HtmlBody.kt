@@ -1,5 +1,7 @@
 package kotlinx.html
 
+import kotlinx.flow.initializedBy
+
 val <T> empty_contents: T.() -> Unit = { }
 
 fun HTML.body(init: BODY.() -> Unit) = build(BODY(this), init)
@@ -22,7 +24,7 @@ public abstract class HtmlBodyTag(containingTag: HtmlTag?, name: String, renderS
 
     fun addClass(c: StyleClass?) {
         if (c != null) {
-            addClass(c.name())
+            addClass(c.classname())
         }
     }
 
@@ -32,7 +34,7 @@ public abstract class HtmlBodyTag(containingTag: HtmlTag?, name: String, renderS
     }
 
     fun setClass(c: StyleClass?) {
-        setClass(c?.name() ?: "")
+        setClass(c?.classname() ?: "")
     }
 
     fun setClass(c: String) {
@@ -51,11 +53,48 @@ inline fun DL.dt(contents:  DT.() -> Unit) = contentTag(DT(this), contents)
 inline fun DL.dd(contents:  DD.() -> Unit) = contentTag(DD(this), contents)
 
 inline fun HtmlBodyTag.h1(contents:  H1.() -> Unit) = contentTag(H1(this), contents)
+fun HtmlBodyTag.h1(quickTitle: String, contents:  H1.() -> Unit = {}) = h1 {
+    +quickTitle
+    contents()
+}
 inline fun HtmlBodyTag.h2(contents:  H2.() -> Unit) = contentTag(H2(this), contents)
+fun HtmlBodyTag.h2(quickTitle: String, contents:  H2.() -> Unit = {}) = h2 {
+    +quickTitle
+    contents()
+}
 inline fun HtmlBodyTag.h3(contents:  H3.() -> Unit) = contentTag(H3(this), contents)
+fun HtmlBodyTag.h3(quickTitle: String, contents:  H3.() -> Unit = {}) = h3 {
+    +quickTitle
+    contents()
+}
 inline fun HtmlBodyTag.h4(contents:  H4.() -> Unit) = contentTag(H4(this), contents)
+fun HtmlBodyTag.h4(quickTitle: String, contents:  H4.() -> Unit = {}) = h4 {
+    +quickTitle
+    contents()
+}
 inline fun HtmlBodyTag.h5(contents:  H5.() -> Unit) = contentTag(H5(this), contents)
+fun HtmlBodyTag.h5(quickTitle: String, contents:  H5.() -> Unit = {}) = h5 {
+    +quickTitle
+    contents()
+}
 inline fun HtmlBodyTag.img(contents:  IMG.() -> Unit) = contentTag(IMG(this), contents)
+fun HtmlBodyTag.img(src: Link, contents:  IMG.() -> Unit = {}) = img {
+    this.src = src
+    contents()
+}
+fun HtmlBodyTag.img(src: Link, width: Int, height: Int, contents:  IMG.() -> Unit = {}) = img {
+    this.src = src
+    this.width = width
+    this.height = height
+    contents()
+}
+fun HtmlBodyTag.img(src: Link, width: Int, height: Int, alt: String, contents:  IMG.() -> Unit = {}) = img {
+    this.src = src
+    this.width = width
+    this.height = height
+    this.alt = alt
+    contents()
+}
 inline fun HtmlBodyTag.input(contents:  INPUT.() -> Unit) = contentTag(INPUT(this), contents)
 inline fun HtmlBodyTag.label(contents:  LABEL.() -> Unit) = contentTag(LABEL(this), contents)
 inline fun HtmlBodyTag.select(contents:  SELECT.() -> Unit) = contentTag(SELECT(this), contents)
@@ -82,9 +121,18 @@ open class BUTTON(containingTag: HtmlBodyTag) : HtmlBodyTag(containingTag, "butt
 fun HtmlBodyTag.hr() = contentTag(HR(this), {})
 fun HtmlBodyTag.br() = contentTag(BR(this), {})
 
-inline fun HtmlBodyTag.div(contents:  DIV.() -> Unit) = contentTag(DIV(this), contents)
-inline fun HtmlBodyTag.div(style: StyleClass?, contents:  DIV.() -> Unit) = div {
-    addClass(style)
+// inline fun HtmlBodyTag.div(contents:  DIV.() -> Unit) = contentTag(DIV(this), contents)
+inline fun HtmlBodyTag.div(vararg styles: StyleClass?, contents:  DIV.() -> Unit) = contentTag(DIV(this)) {
+    for (one in styles) { addClass(one) }
+    contents()
+}
+//inline fun HtmlBodyTag.div(divId: String, contents:  DIV.() -> Unit) = contentTag(DIV(this)) {
+//    id = divId
+//    contents()
+//}
+inline fun HtmlBodyTag.div(divId: String, vararg styles: StyleClass?, contents:  DIV.() -> Unit) = contentTag(DIV(this)) {
+    id = divId
+    for (one in styles) { addClass(one) }
     contents()
 }
 

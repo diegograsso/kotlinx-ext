@@ -41,4 +41,5 @@ object Attributes {
     val cols = IntAttribute("cols")
     val rows = IntAttribute("rows")
     val wrap = EnumAttribute("wrap", javaClass<Wrap>())
+    val lang = StringAttribute("lang")
 }

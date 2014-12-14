@@ -5,7 +5,7 @@ import kotlin.test.assertEquals
 import kotlinx.html.*
 import kotlinx.kara.tests.SampleClasses.*
 
-enum class SampleClasses : StyleClass {
+enum class SampleClasses : StyleEnum {
     c1 c2 c3
 }
 

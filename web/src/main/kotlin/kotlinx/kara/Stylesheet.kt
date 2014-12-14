@@ -39,6 +39,7 @@ fun HEAD.style(media: String = "all", mimeType: String = "text/css", buildSheet:
 }
 
 fun HEAD.stylesheet(stylesheet: Stylesheet)  = build(STYLESHEETLINK(this, stylesheet), { })
+fun HEAD.stylesheet(stylesheet: Link)  = link(stylesheet, "stylesheet", "text/css")
 
 class STYLE(containingTag : HEAD, val stylesheet : Stylesheet) : HtmlTag(containingTag, "style") {
     public var media : String by StringAttribute("media")

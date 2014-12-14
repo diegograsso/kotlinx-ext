@@ -5,7 +5,7 @@ import kotlinx.kara.Stylesheet
 
 /** A test stylesheet builder.
  */
-enum class StyleClasses : StyleClass { box }
+enum class StyleClasses : StyleEnum { box }
 object TestStylesheet : Stylesheet() {
     override fun CssElement.render() {
         body {

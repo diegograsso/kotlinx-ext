@@ -41,9 +41,8 @@ open class KaraServlet(val forceConfig: ApplicationConfig? = null) : HttpServlet
         try {
             val query = req.getQueryString()
             if (!application.context.dispatch(req, resp)) {
-                // TODO: was this correct, throwing error when not found doesn't allow default resource response.
-                // logger.trace("${req.getMethod()} -- ${req.getRequestURL()}${if (query != null) "?" + query else ""} -- FAILED")
-                // resp.sendError(HttpServletResponse.SC_NOT_FOUND)
+               logger.trace("${req.getMethod()} -- ${req.getRequestURL()}${if (query != null) "?" + query else ""} -- FAILED")
+               resp.sendError(HttpServletResponse.SC_NOT_FOUND)
             } else {
                 logger.trace("${req.getMethod()} -- ${req.getRequestURL()}${if (query != null) "?" + query else ""} -- OK")
             }

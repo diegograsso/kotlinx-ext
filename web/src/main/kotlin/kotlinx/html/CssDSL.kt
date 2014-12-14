@@ -18,22 +18,30 @@ object EmptyTrait : SelectorTrait {
 }
 
 public trait StyleClass : SelectorTrait, Selector {
-    fun name(): String
+    fun classname(): String
 
     override fun toExternalForm(): String {
-        return ".${name()}"
+        return ".${classname()}"
+    }
+}
+
+public trait StyleEnum : StyleClass {
+    fun name(): String
+
+    override fun classname(): String {
+        return name()
     }
 }
 
 public class SimpleClassStyle(val name : String) : StyleClass {
-    override fun name(): String {
+    override fun classname(): String {
         return name
     }
 }
 
 class CompositeStyleClass(val a: StyleClass, val b: StyleClass) : StyleClass {
-    override fun name(): String {
-        return "${a.name()} ${b.name()}"
+    override fun classname(): String {
+        return "${a.classname()} ${b.classname()}"
     }
 
     override fun toExternalForm(): String {
@@ -48,7 +56,7 @@ public fun StyleClass?.plus(another: StyleClass?): StyleClass? = when {
     else -> CompositeStyleClass(this, another)
 }
 
-public enum class PseudoClass : StyleClass {
+public enum class PseudoClass : StyleEnum {
     root firstChild lastChild firstOfType lastOfType onlyChild onlyOfType
     empty link visited active focus hover target enabled disabled checked
 

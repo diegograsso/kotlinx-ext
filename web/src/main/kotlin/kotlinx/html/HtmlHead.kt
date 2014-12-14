@@ -32,6 +32,8 @@ fun HtmlTag.script(src: Link, mimeType: String = "text/javascript") {
     tag.mimeType = mimeType
 }
 
+fun HtmlTag.javascript(src: Link) = script(src, "text/javascript")
+
 fun HtmlTag.script(mimeType: String = "text/javascript", content: SCRIPTBLOCK.() -> Unit) {
     val tag = build(SCRIPTBLOCK(this), content)
     tag.mimeType = mimeType
