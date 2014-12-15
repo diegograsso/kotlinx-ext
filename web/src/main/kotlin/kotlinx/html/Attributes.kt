@@ -42,4 +42,5 @@ object Attributes {
     val rows = IntAttribute("rows")
     val wrap = EnumAttribute("wrap", javaClass<Wrap>())
     val lang = StringAttribute("lang")
+    val nowrap = BooleanAttribute("nowrap", "nowrap", "false")
 }

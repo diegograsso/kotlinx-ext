@@ -97,12 +97,24 @@ fun HtmlBodyTag.img(src: Link, width: Int, height: Int, alt: String, contents:  
 }
 inline fun HtmlBodyTag.input(contents:  INPUT.() -> Unit) = contentTag(INPUT(this), contents)
 inline fun HtmlBodyTag.label(contents:  LABEL.() -> Unit) = contentTag(LABEL(this), contents)
+fun HtmlBodyTag.label(lbl: String, contents:  LABEL.() -> Unit = {}) = label {
+    +lbl
+}
 inline fun HtmlBodyTag.select(contents:  SELECT.() -> Unit) = contentTag(SELECT(this), contents)
 inline fun HtmlBodyTag.textarea(contents:  TEXTAREA.() -> Unit) = contentTag(TEXTAREA(this), contents)
 
 inline fun HtmlBodyTag.a(contents:  A.() -> Unit) = contentTag(A(this), contents)
 inline fun HtmlBodyTag.a(style:StyleClass?, contents:  A.() -> Unit) = a {
     addClass(style)
+    contents()
+}
+inline fun HtmlBodyTag.a(style:StyleClass?, href: Link, contents:  A.() -> Unit) = a {
+    addClass(style)
+    this.href = href
+    contents()
+}
+inline fun HtmlBodyTag.a(href: Link, contents:  A.() -> Unit) = a {
+    this.href = href
     contents()
 }
 open class A(containingTag: HtmlBodyTag) : HtmlBodyTag(containingTag, "a", contentStyle = ContentStyle.propagate) {
@@ -121,23 +133,32 @@ open class BUTTON(containingTag: HtmlBodyTag) : HtmlBodyTag(containingTag, "butt
 fun HtmlBodyTag.hr() = contentTag(HR(this), {})
 fun HtmlBodyTag.br() = contentTag(BR(this), {})
 
-// inline fun HtmlBodyTag.div(contents:  DIV.() -> Unit) = contentTag(DIV(this), contents)
 inline fun HtmlBodyTag.div(vararg styles: StyleClass?, contents:  DIV.() -> Unit) = contentTag(DIV(this)) {
     for (one in styles) { addClass(one) }
     contents()
 }
-//inline fun HtmlBodyTag.div(divId: String, contents:  DIV.() -> Unit) = contentTag(DIV(this)) {
-//    id = divId
-//    contents()
-//}
 inline fun HtmlBodyTag.div(divId: String, vararg styles: StyleClass?, contents:  DIV.() -> Unit) = contentTag(DIV(this)) {
     id = divId
     for (one in styles) { addClass(one) }
     contents()
 }
 
+inline fun HtmlBodyTag.footer(vararg styles: StyleClass?, contents:  FOOTER.() -> Unit) = contentTag(FOOTER(this)) {
+    for (one in styles) { addClass(one) }
+    contents()
+}
+inline fun HtmlBodyTag.footer(divId: String, vararg styles: StyleClass?, contents:  FOOTER.() -> Unit) = contentTag(FOOTER(this)) {
+    id = divId
+    for (one in styles) { addClass(one) }
+    contents()
+}
+
 inline fun HtmlBodyTag.b(contents:  B.() -> Unit) = contentTag(B(this), contents)
+fun HtmlBodyTag.b(quickText: String) = b { +quickText }
+
 inline fun HtmlBodyTag.i(contents:  I.() -> Unit) = contentTag(I(this), contents)
+fun HtmlBodyTag.i(quickText: String) = i { +quickText }
+
 inline fun HtmlBodyTag.p(contents:  P.() -> Unit) = contentTag(P(this), contents)
 inline fun HtmlBodyTag.p(styleClass: StyleClass?, contents:  P.() -> Unit) = p {
     addClass(styleClass)
@@ -159,6 +180,7 @@ inline fun HtmlBodyTag.em(contents:  EM.() -> Unit) = contentTag(EM(this), conte
 open class BR(containingTag: HtmlBodyTag) : HtmlBodyTag(containingTag, "br", RenderStyle._empty)
 open class HR(containingTag: HtmlBodyTag) : HtmlBodyTag(containingTag, "hr", RenderStyle._empty)
 open class DIV(containingTag: HtmlBodyTag) : HtmlBodyTag(containingTag, "div")
+open class FOOTER(containingTag: HtmlBodyTag) : HtmlBodyTag(containingTag, "footer")
 open class I(containingTag: HtmlBodyTag) : HtmlBodyTag(containingTag, "i", contentStyle = ContentStyle.propagate)
 open class B(containingTag: HtmlBodyTag) : HtmlBodyTag(containingTag, "b", contentStyle = ContentStyle.propagate)
 open class P(containingTag: HtmlBodyTag) : HtmlBodyTag(containingTag, "p")
@@ -236,7 +258,9 @@ open class TFOOT(containingTag: TABLE) : TableTag(containingTag, "tfoot")
 open class TBODY(containingTag: TABLE) : TableTag(containingTag, "tbody")
 open class TR(containingTag: TableTag) : HtmlBodyTag(containingTag, "tr")
 open class TH(containingTag: TR) : HtmlBodyTag(containingTag, "th")
-open class TD(containingTag: TR) : HtmlBodyTag(containingTag, "td")
+open class TD(containingTag: TR) : HtmlBodyTag(containingTag, "td") {
+    public var nowrap: Boolean by Attributes.nowrap
+}
 
 inline fun HtmlBodyTag.table(contents:  TABLE.() -> Unit) = contentTag(TABLE(this), contents)
 inline fun TABLE.tbody(contents:  TBODY.() -> Unit) = contentTag(TBODY(this), contents)
