@@ -22,7 +22,7 @@ class TemplateTests() {
 
     Test fun inlineTemplate() {
         val response = mockDispatch("GET", "/template/1")
-        val output = response.stringOutput()
+       // val output = response.stringOutput()
         assertEquals("text/html", response._contentType, "Content type should be html")
 
     }

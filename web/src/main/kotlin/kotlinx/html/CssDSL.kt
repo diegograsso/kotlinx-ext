@@ -88,9 +88,9 @@ open class CssElement() {
         fun id(id: IdSelector, body: StyledElement.() -> Unit) = invoke(id, body = body)
 
         fun c(vararg klass: StyleClass, body: StyledElement.() -> Unit) {
-            invoke(*(klass as Array<SelectorTrait>), body = body)
+            invoke(*array(klass as SelectorTrait), body = body)
         }
-        fun c(vararg klass: StyleClass): Selector = invoke(*(klass as Array<SelectorTrait>))
+        fun c(vararg klass: StyleClass): Selector = invoke(*array(klass as SelectorTrait))
 
         fun invoke(vararg traits: SelectorTrait, body: StyledElement.() -> Unit) {
             s(SimpleSelector(this, traits).toExternalForm(), body)
@@ -223,7 +223,7 @@ open class CssElement() {
 
     class UnionSelector(val selectors: Array<Selector>) : Selector {
         override fun toExternalForm(): String {
-            return "(${selectors.map ({ it.toExternalForm() }).makeString(",")})"
+            return "(${selectors.map ({ it.toExternalForm() }).joinToString(",")})"
         }
     }
 
@@ -256,6 +256,7 @@ class StyledElement(val selector: String) : CssElement() {
     }
 
     /** Strongly-typed method for pulling attributes out of the hash. */
+    [suppress("UNCHECKED_CAST")]
     fun getAttribute<T>(name: String): T {
         if (attributes.containsKey(name))
             return attributes[name] as T
@@ -264,6 +265,7 @@ class StyledElement(val selector: String) : CssElement() {
     }
 
     /** Strongly-typed method for pulling attributes out of the hash, with a default return value. */
+    [suppress("UNCHECKED_CAST")]
     fun getAttribute<T>(name: String, default: T): T {
         if (attributes.containsKey(name))
             return attributes[name] as T

@@ -43,8 +43,8 @@ class ResourceDispatcher(val context: ApplicationContext, resourceTypes: List<Cl
     }
 
     fun dispatch(request: HttpServletRequest, response: HttpServletResponse): Boolean {
-        val url = request.getRequestURI() as String
-        val query = request.getQueryString()
+        val url = request.getRequestURI()
+        // val query = request.getQueryString()
         val method = request.getMethod()
         val resourceDescriptor = findDescriptor(method!!, url.trimLeading(request.getContextPath() ?: ""))
         if (resourceDescriptor != null) {

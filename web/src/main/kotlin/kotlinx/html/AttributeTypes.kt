@@ -1,9 +1,11 @@
 package kotlinx.html
 
+[suppress("UNUSED_PARAMETER")]
 public abstract class Attribute<T>(val name: String) {
     fun get(tag: HtmlTag, property: PropertyMetadata): T {
         return decode(tag[name]);
     }
+
     fun set(tag: HtmlTag, property: PropertyMetadata, value: T) {
         tag[name] = encode(value);
     }

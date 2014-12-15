@@ -214,14 +214,14 @@ class Color(var red: Double, var green: Double, var blue: Double, var alpha: Dou
  *  - a 6 digit hex string for RGB: #FE395A
  *  - a 8 digit hex string for RGBA: #FE395A88
  */
-inline fun color(s: String): Color {
+fun color(s: String): Color {
     if (s.startsWith("#"))
         return Color.fromHex(s)
     throw Exception("Invalid color string: ${s}");
 }
 
 /** Returns true if the string is a valid color literal. */
-inline fun isColor(s: String): Boolean {
+fun isColor(s: String): Boolean {
     return s.startsWith("#") || s.startsWith("rgb")
 }
 

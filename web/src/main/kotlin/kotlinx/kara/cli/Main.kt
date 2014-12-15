@@ -16,7 +16,7 @@ fun main(args: Array<String>) {
     val appConfig = ApplicationConfig.loadFrom(if (args.size > 0) args[0] else "development.conf")
 
     // TODO: logging
-    val logPath = appConfig.tryGet("kara.logPropertiesPath")
+    // val logPath = appConfig.tryGet("kara.logPropertiesPath")
 
     config(appConfig)
     server(appConfig)

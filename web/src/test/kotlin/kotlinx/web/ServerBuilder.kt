@@ -63,7 +63,7 @@ public class ServerBuilderTests {
 
     Test fun testRoutes() {
         isolatedTest {
-            val server = ServerBuilder {
+            ServerBuilder {
                 listenOn {
                     port = 8080
                 }

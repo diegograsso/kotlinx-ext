@@ -99,6 +99,7 @@ inline fun HtmlBodyTag.input(contents:  INPUT.() -> Unit) = contentTag(INPUT(thi
 inline fun HtmlBodyTag.label(contents:  LABEL.() -> Unit) = contentTag(LABEL(this), contents)
 fun HtmlBodyTag.label(lbl: String, contents:  LABEL.() -> Unit = {}) = label {
     +lbl
+    contents()
 }
 inline fun HtmlBodyTag.select(contents:  SELECT.() -> Unit) = contentTag(SELECT(this), contents)
 inline fun HtmlBodyTag.textarea(contents:  TEXTAREA.() -> Unit) = contentTag(TEXTAREA(this), contents)

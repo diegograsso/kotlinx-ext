@@ -135,6 +135,7 @@ fun <T> Class<out T>.buildBeanInstance(params: (String) -> String?): T {
     return ktor.newInstance(*arguments) as T
 }
 
+[suppress("UNUSED_VARIABLE")]
 fun Any.primaryProperties() : List<String> {
     return ReflectionCache.primaryProperites.getOrPut(javaClass) {
         val (ktor, paramTypes, annotations) = javaClass.consMetaData()

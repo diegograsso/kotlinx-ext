@@ -70,6 +70,7 @@ class ActionContext(val application: ApplicationContext,
     }
 }
 
+/*
 public class RequestScope<T>() {
     fun get(o : Any?, desc: kotlin.PropertyMetadata): T {
         val data = ActionContext.current().data
@@ -92,6 +93,7 @@ public class LazyRequestScope<T:Any>(val initial: () -> T) {
         return data.get(desc) as T
     }
 }
+*/
 
 public class ContextException(msg : String) : Exception(msg) {}
 

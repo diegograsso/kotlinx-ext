@@ -61,6 +61,8 @@ class MockHttpServletRequest(method : String, url : String) : HttpServletRequest
     public override fun getSession() : HttpSession? {
         throw UnsupportedOperationException()
     }
+
+    [suppress("BASE_WITH_NULLABLE_UPPER_BOUND")]
     override fun <T : HttpUpgradeHandler?> upgrade(handlerClass: Class<T>?): T? {
         throw UnsupportedOperationException()
     }

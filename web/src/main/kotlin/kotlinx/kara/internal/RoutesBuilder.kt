@@ -11,6 +11,7 @@ import kotlinx.kara.Location
 import kotlinx.kara.Route
 import kotlinx.reflection.objectInstance
 
+[suppress("UNCHECKED_CAST")]
 fun scanPackageForResources(prefix : String, classloader : ClassLoader) : List<Class<out Resource>> {
     try {
         val reflections = Reflections(prefix, classloader)
@@ -24,6 +25,7 @@ fun scanPackageForResources(prefix : String, classloader : ClassLoader) : List<C
     }
 }
 
+[suppress("UNCHECKED_CAST")]
 fun scanObjects(objects : Array<Any>, classloader: ClassLoader? = null) : List<Class<out Resource>> {
     val answer = ArrayList<Class<out Resource>>()
 

@@ -74,6 +74,7 @@ class DataClassSerializer: TypeSerializer() {
         return param.serialize()
     }
 
+    [suppress("UNCHECKED_CAST")]
     override fun deserialize(param: String, paramType: Class<*>): Any? {
         return (paramType as Class<Any>).parse(param)
     }
