@@ -83,6 +83,7 @@ subprojects {
     publishing {
         publications {
             maven(MavenPublication) {
+                group = "com.collokia.kotlinx"
                 from components.java
 
                 artifact sourceJar {
