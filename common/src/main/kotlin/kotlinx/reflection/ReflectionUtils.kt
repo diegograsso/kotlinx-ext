@@ -54,8 +54,8 @@ fun Class<out Any>.propertyGetter(property: String): Method? {
     return ReflectionCache.propertyGetters.getOrPut(Pair(this, property)) {
         try {
             getMethod("get${when {
-                property.length == 1 && property[0].isLowerCase() -> property.capitalize()
-                property.length > 2 && property[1].isLowerCase() -> property.capitalize()
+                property.length() == 1 && property[0].isLowerCase() -> property.capitalize()
+                property.length() > 2 && property[1].isLowerCase() -> property.capitalize()
                 else -> property
             }}")
         }
