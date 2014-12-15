@@ -56,10 +56,10 @@ subprojects {
     }
 
     repositories {
-        jcenter()
         maven {
-            url 'http://repository.jetbrains.com/all'
+            url 'https://collokia.artifactoryonline.com/collokia/collokia-oss'
         }
+        jcenter()
         maven {
             url 'http://oss.sonatype.org/content/repositories/snapshots'
         }
@@ -108,12 +108,15 @@ subprojects {
 
 buildscript {
     repositories {
-        mavenCentral()
         maven {
-            url 'http://repo.spring.io/plugins-release'
+            url 'https://collokia.artifactoryonline.com/collokia/collokia-oss'
         }
+        jcenter()
         maven {
             url 'http://oss.sonatype.org/content/repositories/snapshots'
+        }
+        maven {
+            url 'http://repo.spring.io/plugins-release'
         }
     }
     dependencies {
