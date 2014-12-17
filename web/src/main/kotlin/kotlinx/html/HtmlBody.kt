@@ -122,6 +122,7 @@ open class A(containingTag: HtmlBodyTag) : HtmlBodyTag(containingTag, "a", conte
     public var href: Link by Attributes.href
     public var rel: String by Attributes.rel
     public var target: String by Attributes.target
+    public var alt: String by Attributes.alt
 }
 
 open class BUTTON(containingTag: HtmlBodyTag) : HtmlBodyTag(containingTag, "button", RenderStyle.adaptive, ContentStyle.propagate) {
