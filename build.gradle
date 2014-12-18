@@ -40,14 +40,13 @@ subprojects {
         compile "org.jetbrains.kotlin:kotlin-stdlib:$kotlinVersion"
 
         testRuntime "org.jetbrains.kotlin:kotlin-stdlib:$kotlinVersion"
-        testCompile "org.hamcrest:hamcrest-all:$hamcrestVersion"
-        testCompile ("org.jetbrains.spek:spek:$spekVersion") {
-            exclude group: "org.jetbrains.kotlin"
-            exclude group: "junit"
-        }
-        testCompile ("junit:junit:$junitVersion") {
-            exclude group: "org.hamcrest"
-        }
+
+       // testCompile ("org.jetbrains.spek:spek:$spekVersion") {
+       //     exclude group: "org.jetbrains.kotlin"
+       //     exclude group: "junit"
+       //  }
+        testCompile "junit:junit:$junitVersion"
+
         testCompile "ch.qos.logback:logback-classic:${version_logback}"
         testCompile "ch.qos.logback:logback-access:${version_logback}"
         testRuntime "org.slf4j:jcl-over-slf4j:${version_slf4j}"
