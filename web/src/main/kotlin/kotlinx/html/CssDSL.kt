@@ -88,9 +88,9 @@ open class CssElement() {
         fun id(id: IdSelector, body: StyledElement.() -> Unit) = invoke(id, body = body)
 
         fun c(vararg klass: StyleClass, body: StyledElement.() -> Unit) {
-            invoke(*array(klass as SelectorTrait), body = body)
+            invoke(*(klass as Array<SelectorTrait>), body = body)
         }
-        fun c(vararg klass: StyleClass): Selector = invoke(*array(klass as SelectorTrait))
+        fun c(vararg klass: StyleClass): Selector = invoke(*(klass as Array<SelectorTrait>))
 
         fun invoke(vararg traits: SelectorTrait, body: StyledElement.() -> Unit) {
             s(SimpleSelector(this, traits).toExternalForm(), body)
