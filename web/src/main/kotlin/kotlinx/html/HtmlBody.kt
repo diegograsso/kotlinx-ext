@@ -181,7 +181,7 @@ inline fun HtmlBodyTag.em(contents:  EM.() -> Unit) = contentTag(EM(this), conte
 
 open class BR(containingTag: HtmlBodyTag) : HtmlBodyTag(containingTag, "br", RenderStyle._empty)
 open class HR(containingTag: HtmlBodyTag) : HtmlBodyTag(containingTag, "hr", RenderStyle._empty)
-open class DIV(containingTag: HtmlBodyTag) : HtmlBodyTag(containingTag, "div")
+open class DIV(containingTag: HtmlBodyTag? = null) : HtmlBodyTag(containingTag, "div")
 open class FOOTER(containingTag: HtmlBodyTag) : HtmlBodyTag(containingTag, "footer")
 open class I(containingTag: HtmlBodyTag) : HtmlBodyTag(containingTag, "i", contentStyle = ContentStyle.propagate)
 open class B(containingTag: HtmlBodyTag) : HtmlBodyTag(containingTag, "b", contentStyle = ContentStyle.propagate)
