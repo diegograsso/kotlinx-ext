@@ -30,6 +30,13 @@ public abstract class CachedResource() : DynamicResource() {
     }
 }
 
+public open class UncachedEmbeddedResource(val mime: String, val name: String): DynamicResource() {
+    override fun content(context: ActionContext): ResourceContent {
+        val bytes = context.loadResource(name)
+        return ResourceContent(mime, System.currentTimeMillis(), bytes.size) { bytes.inputStream }
+    }
+}
+
 public open class EmbeddedResource(val mime : String, val name: String) : CachedResource() {
     override fun content(context: ActionContext): ResourceContent {
         val bytes = context.loadResource(name)
