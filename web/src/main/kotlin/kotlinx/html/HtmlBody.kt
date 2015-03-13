@@ -271,7 +271,10 @@ inline fun TABLE.tfoot(contents:  TFOOT.() -> Unit) = contentTag(TFOOT(this), co
 inline fun TableTag.tr(contents:  TR.() -> Unit) = contentTag(TR(this), contents)
 inline fun TR.th(contents:  TH.() -> Unit) = contentTag(TH(this), contents)
 inline fun TR.td(contents:  TD.() -> Unit) = contentTag(TD(this), contents)
-
+inline fun TR.td(style: StyleClass, contents:  TD.() -> Unit) = td {
+    addClass(style)
+    contents()
+}
 
 inline fun HtmlBodyTag.form(contents:  FORM.() -> Unit) = contentTag(FORM(this), contents)
 
