@@ -49,3 +49,24 @@ public open class DivTemplateView<T : Template<DIV>>(val template: T, val divId:
         writer.flush()
     }
 }
+
+public open class DivView(val divId: String? = null, vararg divStyles: StyleClass, val content: DIV.() -> Unit) : ActionResult {
+    val styles = divStyles
+    override fun writeResponse(context: ActionContext) {
+        writeResponse(context.response)
+    }
+
+    fun writeResponse(response: HttpServletResponse) {
+        response.setContentType("text/html")
+        val writer = response.getWriter()!!
+        val div = DIV()
+
+        with(div) {
+            if (divId != null) id = divId
+            for (style in styles) addClass(style)
+            content()
+        }
+        writer.write(div.toString())
+        writer.flush()
+    }
+}
