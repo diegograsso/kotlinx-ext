@@ -87,10 +87,8 @@ open class CssElement() {
         fun id(name: String, body: StyledElement.() -> Unit) = id(IdSelector(name), body)
         fun id(id: IdSelector, body: StyledElement.() -> Unit) = invoke(id, body = body)
 
-        fun c(vararg klass: StyleClass, body: StyledElement.() -> Unit) {
-            invoke(*(klass as Array<SelectorTrait>), body = body)
-        }
-        fun c(vararg klass: StyleClass): Selector = invoke(*(klass as Array<SelectorTrait>))
+        fun c(vararg klass: StyleClass, body: StyledElement.() -> Unit) = invoke(*klass, body = body)
+        fun c(vararg klass: StyleClass): Selector = invoke(*klass)
 
         fun invoke(vararg traits: SelectorTrait, body: StyledElement.() -> Unit) {
             s(SimpleSelector(this, traits).toExternalForm(), body)
@@ -205,7 +203,7 @@ open class CssElement() {
                 answer.append(t.toExternalForm())
             }
 
-            if (answer.length == 0 && isAny) {
+            if (answer.length() == 0 && isAny) {
                 return "*"
             }
 
@@ -223,7 +221,7 @@ open class CssElement() {
 
     class UnionSelector(val selectors: Array<out Selector>) : Selector {
         override fun toExternalForm(): String {
-            return "(${selectors.map ({ it.toExternalForm() }).joinToString(",")})"
+            return "(${selectors.map ({ it.toExternalForm() }).join(",")})"
         }
     }
 

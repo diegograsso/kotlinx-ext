@@ -5,6 +5,7 @@ import kara.demo.styles.StyleClasses.*
 import kara.demo.styles.StyleClasses
 
 import kotlinx.html.*
+import kara.demo.models.Post
 import kotlinx.kara.HtmlTemplateView
 
 fun Show(post: Post) = HtmlTemplateView(DetailsTemplate()) {
